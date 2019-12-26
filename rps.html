@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+
+<h2>
+	
+	PROJECT ROCK PAPER SCISSORS
+
+</h2>
+  <script>
+    // Your JavaScript goes here!
+
+    // Player Selection is ps
+    //Computer Selection is cs
+
+    function computerPlay(){
+
+    	let rn=Math.floor(Math.random()*3); //random number for Computer's selection
+    	let compchoice
+    	switch(rn){
+
+    		case 0: 
+    		compchoice="rock"
+    		break
+    		case 1:
+    		compchoice="paper"
+    		break
+    		default:
+    		compchoice="scissors"
+
+    	}
+    	console.log("Computer chose "+compchoice)
+    	return compchoice 
+
+    }
+
+    function playRound(ps, cs) {
+	
+	let roundResult=-1 //round result: 0 for computer
+						//			   1 for player
+
+if(ps==cs){  //in case of draw
+	ps=prompt("It's a draw...Choose again")
+	ps=ps.toLowerCase()
+	ps=check(ps)
+	cs=computerPlay()
+	return playRound(ps,cs)
+}else{
+
+	if(ps=="rock" && cs=="scissors"){
+		roundResult=1
+		console.log("You chose rock | Computer chose scissors ")
+	}else if(ps=="rock" && cs=="paper"){
+		roundResult=0;
+		console.log("You chose rock | Computer chose paper ")
+	}else if(ps=="paper" && cs=="scissors"){
+		roundResult=0
+		console.log("You chose paper | Computer chose scissors ")
+	}else if (ps=="paper" && cs=="rock") {
+		roundResult=1
+		console.log("You chose paper | Computer chose rock ")
+	}else if(ps=="scissors" && cs=="paper"){
+		roundResult=1
+		console.log("You chose scissors | Computer chose paper ")
+	}else if(ps=="scissors" && cs=="rock"){
+		roundResult=0
+		console.log("You chose scissors | Computer chose rock ")
+	}
+	}
+
+	return roundResult
+
+}
+	
+function check(ps){ // checking if the choise of player is valid
+
+	while(ps!="rock" && ps!="paper" && ps!="scissors"){
+		ps=prompt("You have to choose rock paper or scissors")
+		ps=ps.toLowerCase()
+	}
+	return ps
+}
+
+function game(){
+
+	let counter=0
+	let plwins=0
+	let comwins=0
+	let round_result
+	let ps 
+	let cs
+	while(counter<=4){
+		ps=prompt("Choose rock,paper or scissors")
+		ps=ps.toLowerCase()
+		ps=check(ps)
+		cs=computerPlay()
+		round_result=playRound(ps,cs) ;
+		 
+
+		if(round_result==0){
+			comwins++
+		}else if(round_result==1){
+
+			plwins++
+		}	
+
+		counter++ ;
+console.log("Round  "+counter)
+console.log("Computer: "+comwins)
+console.log("Player: "+plwins)
+
+		
+	}
+
+	if(plwins>comwins){
+		console.log("CONGRATS YOU WIN !!!")
+	}else{
+		console.log("Sorry, you lose !!")
+	}
+
+}
+
+
+
+game()
+
+
+
+
+
+  </script>
+</body>
+</html>
